@@ -21,3 +21,10 @@ export type SongType = {
   trackName: string,
   previewUrl: string,
 };
+
+export type SongProps = {
+  trackId: number;
+  trackName: string;
+  previewUrl:string;
+  primaryGenreName: string;
+};
