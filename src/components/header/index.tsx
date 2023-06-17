@@ -30,7 +30,7 @@ function Header() {
         </nav>
       </div>
       <div>
-        <p data-testid="header-user-name">{user}</p>
+        <h3 data-testid="header-user-name">{user}</h3>
       </div>
     </div>
   );

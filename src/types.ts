@@ -27,4 +27,6 @@ export type SongProps = {
   trackName: string;
   previewUrl:string;
   primaryGenreName: string;
+  favoriteSong: (songId: string) => void;
+  validateCheck: (songId: string) => boolean;
 };

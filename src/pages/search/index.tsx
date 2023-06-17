@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 import { AlbumType } from '../../types';
+import Loading from '../../components/loading';
 
 function Search() {
   const [value, setValue] = useState('');
@@ -31,7 +32,7 @@ function Search() {
   const validateButton = () => value.length > 1;
 
   if (loading) {
-    return <h1>Carregando...</h1>;
+    return <Loading />;
   }
 
   return (
@@ -58,19 +59,21 @@ function Search() {
             {' '}
             { title }
           </h1>
-          {albuns.map((e, i) => (
-            <div key={ i }>
-              <p>{ e.artistName }</p>
-              <img src={ e.artworkUrl100 } alt={ e.collectionName } />
-              <p>{ e.collectionName }</p>
-              <Link
-                data-testid={ `link-to-album-${e.collectionId}` }
-                to={ `/album/${e.collectionId}` }
-              >
-                Detalhes
-              </Link>
-            </div>
-          ))}
+          <ul>
+            {albuns.map((e, i) => (
+              <li key={ i }>
+                <h2>{ e.artistName }</h2>
+                <img src={ e.artworkUrl100 } alt={ e.collectionName } />
+                <h3>{ e.collectionName }</h3>
+                <Link
+                  data-testid={ `link-to-album-${e.collectionId}` }
+                  to={ `/album/${e.collectionId}` }
+                >
+                  Detalhes
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       ) : (title !== '' && <h1>Nenhum álbum foi encontrado</h1>)}
     </div>

@@ -1,19 +1,16 @@
-// import { useState } from 'react';
-
-type SongProps = {
-  trackId: number;
-  trackName: string;
-  previewUrl:string;
-  primaryGenreName: string;
-};
+import checked_heart from '../../images/checked_heart.png';
+import empty_heart from '../../images/empty_heart.png';
+import { SongProps } from '../../types';
 
 function MusicCard({ trackName,
   previewUrl,
   trackId,
-  primaryGenreName }: SongProps) {
+  primaryGenreName,
+  favoriteSong,
+  validateCheck }: SongProps) {
   return (
     <div>
-      <p>{ trackName }</p>
+      <h3>{ trackName }</h3>
       <audio data-testid="audio-component" src={ previewUrl } controls>
         <track kind="captions" />
         O seu navegador não suporta o elemento
@@ -21,6 +18,21 @@ function MusicCard({ trackName,
         <code>{trackId}</code>
       </audio>
       <p>{ primaryGenreName }</p>
+      <label
+        data-testid={ `checkbox-music-${trackId}` }
+        htmlFor={ `favorite-check-${trackId}` }
+      >
+        {validateCheck(String(trackId))
+          ? <img src={ checked_heart } alt="favorite" />
+          : <img src={ empty_heart } alt="favorite" />}
+        <input
+          type="checkbox"
+          name="input-check"
+          id="favorite-check"
+          checked={ validateCheck(String(trackId)) }
+          onChange={ () => favoriteSong(String(trackId)) }
+        />
+      </label>
     </div>
   );
 }
