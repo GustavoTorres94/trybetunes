@@ -28,7 +28,7 @@ function MusicCard({ trackName,
         <input
           type="checkbox"
           name="input-check"
-          id="favorite-check"
+          id={ `favorite-check-${trackId}` }
           checked={ validateCheck(String(trackId)) }
           onChange={ () => favoriteSong(String(trackId)) }
         />
